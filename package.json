@@ -1,0 +1,26 @@
+{
+  "name": "redux-fetch-state",
+  "version": "1.0.0",
+  "description": "Redux Plugin for managing request states",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "redux",
+    "fetch",
+    "state"
+  ],
+  "author": "alanzanattadev",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-jest": "^12.1.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "flow-bin": "^0.27.0",
+    "jest-cli": "^12.1.1"
+  },
+  "dependencies": {
+    "immutable": "^3.8.1"
+  }
+}
