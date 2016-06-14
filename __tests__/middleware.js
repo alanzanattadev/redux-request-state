@@ -127,5 +127,19 @@ describe('Middleware', () => {
         expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "ERROR", error: "salut"}}]);
       });
     });
+
+    it('should dispatch success action and replay with user action creator', () => {
+      return middleware(config)(store)(next)({
+        type: "REFRESH_MUSICS",
+        requestID: "refreshMusics",
+        resolve: () => Promise.resolve("coucou"),
+        replayWith: (data) => ({type: "HEY", payload: data})
+      }).then(() => {
+        expect(store.dispatch.mock.calls.length).toBe(3);
+        expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING"}}]);
+        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "SUCCESS"}}]);
+        expect(store.dispatch.mock.calls[2]).toEqual([{type: "HEY", payload: "coucou"}]);
+      });
+    });
   });
 });
