@@ -25,6 +25,6 @@ describe('Redux integration', () => {
       };
     };
     store.dispatch(refreshMusics("Northlane"));
-    expect(store.getState().requests.music.refresh).toBe('SUCCESS');
+    expect(store.getState().requests.music.refresh.state).toBe('SUCCESS');
   });
 });

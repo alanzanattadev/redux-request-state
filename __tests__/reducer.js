@@ -16,7 +16,7 @@ describe('Reducer', () => {
         requestID: "refreshMusics"
       }
     })).toEqual({
-      refreshMusics: "PENDING"
+      refreshMusics: {state: "PENDING"}
     });
   });
 
@@ -28,7 +28,7 @@ describe('Reducer', () => {
         requestID: "refreshMusics"
       }
     })).toEqual({
-      refreshMusics: "SUCCESS"
+      refreshMusics: {state: "SUCCESS"}
     });
   });
 
@@ -43,7 +43,7 @@ describe('Reducer', () => {
         }
       }
     })).toEqual({
-      refreshMusics: "ERROR"
+      refreshMusics: {state: "ERROR", error: {cause: "Network"}}
     });
   });
 
@@ -65,7 +65,7 @@ describe('Reducer', () => {
       }
     })).toEqual({
       musics: {
-        refresh: "SUCCESS"
+        refresh: {state: "SUCCESS"}
       }
     });
   });
