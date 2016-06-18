@@ -19,12 +19,19 @@ describe('React request state connecter', () => {
         'PENDING': (<LoadingComponent myProp="test"/>),
         'SUCCESS': (<SuccessComponent/>),
         'ERROR': (<ErrorComponent/>),
-        'DEFAULT': (<LoadingComponent/>)
+        'DEFAULT': (<LoadingComponent/>),
+        'CACHE': (<SuccessComponent/>)
       },
       mapRequestIDToProps: {
         'data.fetch': {
           download: true
         }
+      },
+      useCache: (props, state) => {
+        if (props.data && props.data.length > 0 && state == "PENDING")
+          return true;
+        else
+          return false;
       }
     }, {});
     it('should render the spinner', () => {
@@ -105,6 +112,19 @@ describe('React request state connecter', () => {
         }}/>
       );
       expect(renderer.getRenderOutput()).toBe(null);
+    });
+
+    it('should use cache', () => {
+      const ConnectedComponent = TestUtils.renderIntoDocument(
+        <StateContainer reducer={{
+          data: {
+            fetch: {
+              state: 'SUCCESS'
+            }
+          }
+        }} data={["myData"]}/>
+      );
+      expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, SuccessComponent)).toBeDefined();
     });
   });
 
