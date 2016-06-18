@@ -1,6 +1,6 @@
-# redux-fetch-state
+# redux-request-state
 
-Data fetch state managment for redux and react. Handles "loading", "impossible to fetch data" and "already loaded" states easily.
+Request state managment for redux and react. Handles "loading", "impossible to fetch data" and "already loaded" states easily.
 
 It's hard and boring to create actions linked to a request,
 you have to make a PENDING one, a SUCCESS one, and an ERROR one,
@@ -12,7 +12,7 @@ This module is divided into several parts that you can replace or not use.
 
 Install module
 ```shell
-npm install --save redux-fetch-state
+npm install --save redux-request-state
 ```
 # Redux
 
@@ -82,7 +82,7 @@ Handles request actions and automaticaly dispatches actions depending on Promise
 ### Use
 Add middleware to store config
 ```javascript
-let fetchState = require('redux-fetch-state/lib/middleware')({
+let fetchState = require('redux-request-state/lib/middleware')({
 
 });
 let middleware = applyMiddleware(fetchState)
@@ -94,7 +94,7 @@ Default reducer that handles actions dispatched by the middleware and let you ac
 ### Use
 Add reducer to store config
 ```javascript
-let reducer = combineReducers({requests: require('redux-fetch-state/lib/reducer')});
+let reducer = combineReducers({requests: require('redux-request-state/lib/reducer')});
 ```
 
 Access request with id 'user.profile.getphoto' informations
@@ -128,7 +128,7 @@ let ErrorComponent = React.createClass({render: () => null});
 
 Configure a connecter that manage loading of component
 ```javascript
-import default as RequestStateConnecter from 'redux-fetch-state/lib/react';
+import default as RequestStateConnecter from 'redux-request-state/lib/react';
 
 let DataComponent = RequestStateConnecter('data.fetch', {
   mapStateToComponent: {

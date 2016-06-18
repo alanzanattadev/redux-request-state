@@ -1,5 +1,5 @@
 {
-  "name": "redux-fetch-state",
+  "name": "redux-request-state",
   "version": "1.0.0",
   "description": "Redux Plugin for managing request states",
   "main": "lib/index.js",
@@ -8,7 +8,7 @@
   },
   "keywords": [
     "redux",
-    "fetch",
+    "request",
     "state"
   ],
   "jest": {
