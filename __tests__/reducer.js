@@ -56,12 +56,12 @@ describe('Reducer', () => {
     })).toEqual({});
   });
 
-  it('should handle requestID as word list', () => {
+  it('should handle requestID as namespace list', () => {
     expect(reducer({}, {
       type: "REQUEST_STATE_CHANGED",
       payload: {
         state: "SUCCESS",
-        requestID: "musics refresh",
+        requestID: "musics.refresh",
       }
     })).toEqual({
       musics: {

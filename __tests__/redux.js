@@ -15,7 +15,7 @@ describe('Redux integration', () => {
     function refreshMusics(artistID) {
       return {
         type: "REFRESH_MUSICS",
-        requestID: "music refresh",
+        requestID: "music.refresh",
         resolve: () => ({
           then:  (cb) => {
             cb({artistID, musics: ["music1", "music2"]})
