@@ -11,6 +11,14 @@
     "fetch",
     "state"
   ],
+  "jest": {
+    "unmockedModulePathPatterns": [
+      "react",
+      "react-addons-test-utils",
+      "react-dom",
+      "immutable"
+    ]
+  },
   "author": "alanzanattadev",
   "license": "ISC",
   "devDependencies": {
@@ -19,6 +27,9 @@
     "babel-preset-react": "^6.5.0",
     "flow-bin": "^0.27.0",
     "jest-cli": "^12.1.1",
+    "react": "^15.1.0",
+    "react-addons-test-utils": "^15.1.0",
+    "react-dom": "^15.1.0",
     "redux": "^3.5.2"
   },
   "dependencies": {
