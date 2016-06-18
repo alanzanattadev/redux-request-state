@@ -204,4 +204,36 @@ describe('React request state connecter', () => {
       expect(renderer.getRenderOutput()).toBe(null);
     });
   });
+
+  describe('Edge cases', () => {
+    it('should handle undefined mapRequestIDToProps', () => {
+      let StateContainer = RequestStateConnecter('data.fetch', {mapStateToComponent: {}});
+      expect(() => {
+        TestUtils.renderIntoDocument(
+          <StateContainer reducer={{
+            data: {
+              upload: {
+                state: 'PENDING'
+              }
+            }
+          }}/>
+        );
+      }).not.toThrow();
+    });
+
+    it('should throws when mapStateToComponents is undefined', () => {
+      let StateContainer = RequestStateConnecter('data.fetch');
+      expect(() => {
+        TestUtils.renderIntoDocument(
+          <StateContainer reducer={{
+            data: {
+              upload: {
+                state: 'PENDING'
+              }
+            }
+          }}/>
+        );
+      }).toThrow();
+    });
+  });
 });
