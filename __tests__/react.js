@@ -16,7 +16,7 @@ describe('React request state connecter', () => {
     let ErrorComponent = React.createClass({render: () => null});
     let StateContainer = RequestStateConnecter('data.fetch', {
       mapStateToComponent: {
-        'PENDING': (<LoadingComponent/>),
+        'PENDING': (<LoadingComponent myProp="test"/>),
         'SUCCESS': (<SuccessComponent/>),
         'ERROR': (<ErrorComponent/>),
         'DEFAULT': (<LoadingComponent/>)
@@ -38,6 +38,7 @@ describe('React request state connecter', () => {
         }}/>
       );
       expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, LoadingComponent)).toBeDefined();
+      expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, LoadingComponent).props.myProp).toBe('test');
     });
 
     it('should render the error', () => {
