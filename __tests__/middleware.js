@@ -109,10 +109,13 @@ describe('Middleware', () => {
         type: "REFRESH_MUSICS",
         requestID: "refreshMusics",
         resolve: () => Promise.resolve("coucou"),
+        payload: {
+          artist: "Northlane"
+        }
       }).then(() => {
         expect(store.dispatch.mock.calls.length).toBe(2);
-        expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING"}}]);
-        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "SUCCESS"}}]);
+        expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING", params: {artist: "Northlane"}}}]);
+        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "SUCCESS", params: {artist: "Northlane"}, data: "coucou"}}]);
       });
     });
 
@@ -121,10 +124,13 @@ describe('Middleware', () => {
         type: "REFRESH_MUSICS",
         requestID: "refreshMusics",
         resolve: () => Promise.reject("salut"),
+        payload: {
+          artist: "Northlane"
+        }
       }).then(() => {
         expect(store.dispatch.mock.calls.length).toBe(2);
-        expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING"}}]);
-        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "ERROR", error: "salut"}}]);
+        expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING", params: {artist: "Northlane"}}}]);
+        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "ERROR", error: "salut", params: {artist: "Northlane"}}}]);
       });
     });
 
@@ -137,7 +143,7 @@ describe('Middleware', () => {
       }).then(() => {
         expect(store.dispatch.mock.calls.length).toBe(3);
         expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING"}}]);
-        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "SUCCESS"}}]);
+        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "SUCCESS", data: "coucou"}}]);
         expect(store.dispatch.mock.calls[2]).toEqual([{type: "HEY", payload: "coucou"}]);
       });
     });

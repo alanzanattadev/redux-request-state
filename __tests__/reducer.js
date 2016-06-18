@@ -13,10 +13,13 @@ describe('Reducer', () => {
       type: "REQUEST_STATE_CHANGED",
       payload: {
         state: "PENDING",
-        requestID: "refreshMusics"
+        requestID: "refreshMusics",
+        params: {
+          token: "mytoken"
+        }
       }
     })).toEqual({
-      refreshMusics: {state: "PENDING"}
+      refreshMusics: {state: "PENDING", params: {token: "mytoken"}}
     });
   });
 
@@ -25,10 +28,12 @@ describe('Reducer', () => {
       type: "REQUEST_STATE_CHANGED",
       payload: {
         state: "SUCCESS",
-        requestID: "refreshMusics"
+        requestID: "refreshMusics",
+        data: ["myData"],
+        params: {token: "mytoken"}
       }
     })).toEqual({
-      refreshMusics: {state: "SUCCESS"}
+      refreshMusics: {state: "SUCCESS", data: ["myData"], params: {token: "mytoken"}}
     });
   });
 
@@ -40,10 +45,13 @@ describe('Reducer', () => {
         requestID: "refreshMusics",
         error: {
           cause: "Network"
+        },
+        params: {
+          token: "mytoken"
         }
       }
     })).toEqual({
-      refreshMusics: {state: "ERROR", error: {cause: "Network"}}
+      refreshMusics: {state: "ERROR", error: {cause: "Network"}, params: {token: "mytoken"}}
     });
   });
 

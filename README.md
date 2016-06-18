@@ -21,38 +21,42 @@ npm install --save redux-fetch-state
 By using this module, you only have to define one action to handle of the lifecycle of a request.
 
 The idea is to define an action that associate a request (defined by a function that returns Promise) with a namespaced id (defined by dots ex: "user.profile.photo")
+The payload is copied in params attribut of dispatched actions's payload
 
 type:
 ```javascript
 {
   type: String,
   requestID: String,
-  resolve: function
+  resolve: function,
+  payload: any
 }
 ```
 
 example :
 ```javascript
+let token = "aiozdaijdaiojdzaoijdiozdajd"
 let action = {
   type: "REFRESH_DATA",
   requestID: "namespace.refreshData",
-  resolve: () => api.get(),
+  resolve: () => api.get(token),
+  payload: {
+    token
+  }
 };
 
 dispatch(action);
 ```
 
-or with redux-thunk
+or with actionCreator
 
 ```javascript
 function refreshDataOfUser(userid) {
-  return (dispatch) => {
-    dispatch({
+    return {
       type: "REFRESH_DATA_OF_USER",
       requestID: `${userid}.data`,
       resolve: () => api.getDataOfUser(userid)
-    })
-  }
+    };
 }
 
 dispatch(refreshDataOfUser("alan"));
