@@ -33,7 +33,7 @@ describe('React request state connecter', () => {
         else
           return false;
       }
-    }, {});
+    });
     it('should render the spinner', () => {
       const ConnectedComponent = TestUtils.renderIntoDocument(
         <StateContainer reducer={{
@@ -74,6 +74,19 @@ describe('React request state connecter', () => {
       expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, SuccessComponent)).toBeDefined();
     });
 
+    it('should render the default as fallback', () => {
+      const ConnectedComponent = TestUtils.renderIntoDocument(
+        <StateContainer reducer={{
+          data: {
+            fetch: {
+              state: 'RETRYING'
+            }
+          }
+        }}/>
+      );
+      expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, LoadingComponent)).toBeDefined();
+    });
+
     it('should add props for fetch request', () => {
       const ConnectedComponent = TestUtils.renderIntoDocument(
         <StateContainer reducer={{
@@ -98,20 +111,6 @@ describe('React request state connecter', () => {
         }}/>
       );
       expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, LoadingComponent)).toBeDefined();
-    });
-
-    it('should render null', () => {
-      let renderer = TestUtils.createRenderer();
-      renderer.render(
-        <StateContainer reducer={{
-          data: {
-            fetch: {
-              state: 'UNKNOWN STATE'
-            }
-          }
-        }}/>
-      );
-      expect(renderer.getRenderOutput()).toBe(null);
     });
 
     it('should use cache', () => {
@@ -144,7 +143,7 @@ describe('React request state connecter', () => {
           download: true
         }
       }[reqID])
-    }, {});
+    });
     it('should render the spinner', () => {
       const ConnectedComponent = TestUtils.renderIntoDocument(
         <StateContainer reducer={{
@@ -210,9 +209,8 @@ describe('React request state connecter', () => {
       expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, LoadingComponent)).toBeDefined();
     });
 
-    it('should render null', () => {
-      let renderer = TestUtils.createRenderer();
-      renderer.render(
+    it('should render default as fallback', () => {
+      const ConnectedComponent = TestUtils.renderIntoDocument(
         <StateContainer reducer={{
           data: {
             fetch: {
@@ -221,7 +219,7 @@ describe('React request state connecter', () => {
           }
         }}/>
       );
-      expect(renderer.getRenderOutput()).toBe(null);
+      expect(TestUtils.findRenderedComponentWithType(ConnectedComponent, LoadingComponent)).toBeDefined();
     });
   });
 
