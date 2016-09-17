@@ -147,5 +147,20 @@ describe('Middleware', () => {
         expect(store.dispatch.mock.calls[2]).toEqual([{type: "HEY", payload: "coucou"}]);
       });
     });
+
+    it('should dispatch success action and replay many actions', () => {
+      return middleware(config)(store)(next)({
+        type: "REFRESH_MUSICS",
+        requestID: "refreshMusics",
+        resolve: () => Promise.resolve("coucou"),
+        replayWith: (data) => [{type: "HEY", payload: data}, {type: "HEY", payload: "salut"}]
+      }).then(() => {
+        expect(store.dispatch.mock.calls.length).toBe(4);
+        expect(store.dispatch.mock.calls[0]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "PENDING"}}]);
+        expect(store.dispatch.mock.calls[1]).toEqual([{type: "REQUEST_STATE_CHANGED", payload: {requestID: "refreshMusics", state: "SUCCESS", data: "coucou"}}]);
+        expect(store.dispatch.mock.calls[2]).toEqual([{type: "HEY", payload: "coucou"}]);
+        expect(store.dispatch.mock.calls[3]).toEqual([{type: "HEY", payload: "salut"}]);
+      });
+    });
   });
 });
