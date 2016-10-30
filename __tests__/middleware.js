@@ -2,8 +2,6 @@
 'use babel'
 // @flow weak
 
-jest.unmock('../lib/middleware');
-
 let middleware = require('../lib/middleware');
 
 describe('Middleware', () => {

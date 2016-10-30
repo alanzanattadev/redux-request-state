@@ -2,11 +2,6 @@
 'use babel'
 // @flow weak
 
-jest.unmock('redux');
-jest.unmock('immutable');
-jest.unmock('../lib/middleware');
-jest.unmock('../lib/reducer');
-
 let {createStore, applyMiddleware, combineReducers} = require('redux');
 
 describe('Redux integration', () => {

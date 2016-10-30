@@ -2,8 +2,6 @@
 'use babel'
 // @flow weak
 
-jest.unmock('../lib/react');
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';

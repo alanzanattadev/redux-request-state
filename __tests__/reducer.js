@@ -2,9 +2,6 @@
 'use babel'
 // @flow weak
 
-jest.unmock('../lib/reducer');
-jest.unmock('immutable');
-
 let reducer = require('../lib/reducer');
 
 describe('Reducer', () => {
