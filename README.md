@@ -110,6 +110,70 @@ With a functionnal API inspired by redux, you can easily configure a request awa
 
 Create your components that display differents state of the data
 
+#### RequestStateConnecter
+
+```javascript
+import {RequestStateConnecter} from 'redux-request-state';
+
+let Connected = connect(state => ({requests: state.requests}))(RequestStateConnecter((props) => `user.${props.userId}.profile.get`)(WrappedComponent));
+
+let Button = () => <Connected userId="092321"/>;
+```
+
+RequestStateConnecter is a Higher Order Component which connects a component to the state of a request. it sends the request state as props, named "state". It requires the associated reducer as props "requests"
+
+params:
+  - Function that return a request id to connect with and takes props as parameters
+  ```javascript
+    (props: any) => string
+  ```
+
+#### RenderedStateConnecter
+
+```javascript
+// React and components imports ...
+import {RenderedStateConnecter} from 'redux-request-state';
+
+let DataList = RenderedStateConnecter(
+  (requestState, props) => {
+    if (requestState == "PENDING")
+      return <Spinner/>
+    else if (requestState == "SUCCESS")
+      return <List items={props.items}/>
+    else if (requestState == "ERROR")
+      return <ErrorMessage/>
+    else if (requestState == "CACHE")
+      return <List/>
+    else if (requestState == "DEFAULT")
+      return <Nothing/>
+    else
+      return null;
+  },
+  (props, requestState) => {
+    return true;
+  },
+  useFallback: true
+);
+```
+
+RenderedStateConnecter is a factory which helps you to display differents components depending on state and configuration. It's a presenter, it's not connected to anything and use its props state to define the requestState.
+
+params:
+- Function that return a react element depending on request state and component props
+```javascript
+mapStateToComponent(requestState: string, props: any) => React.Element
+```
+- Function that tells to the component whether to use the one of requestState "CACHE" or not
+```javascript
+useCache(props: any, requestState: string) => boolean
+```
+
+- Boolean that tells to the component whether to use the one of requestState DEFAULT if no component is found for state
+```javascript
+useFallback: boolean
+```
+
+#### Connecter - Deprecated !!! !!! !!
 The connecter take three parameters :
   - the request id
   - a component configuration map
