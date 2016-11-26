@@ -15,12 +15,28 @@ describe('Higher Order Components', () => {
       expect(subject.find(MyComponent).prop('state')).toBe('SUCCESS');
     });
 
-    it('should pass DEFAULT is requestID has no state', () => {
+    it('should pass DEFAULT if requestID has no state', () => {
       let MyComponent = (props) => (<div></div>);
       let RequestStateComponent = RequestStateConnecter(props => `user.${props.id}.auth.login`)(MyComponent);
       let subject = mount(<RequestStateComponent requests={{user: {'1': {auth: {login: {state: 'SUCCESS'}}}}}} id="2"/>);
 
       expect(subject.find(MyComponent).prop('state')).toBe('DEFAULT');
+    });
+
+    it('should pass data as details props if request has succeed', () => {
+      let MyComponent = (props) => (<div></div>);
+      let RequestStateComponent = RequestStateConnecter(props => `user.${props.id}.auth.login`)(MyComponent);
+      let subject = mount(<RequestStateComponent requests={{user: {'1': {auth: {login: {state: 'SUCCESS', data: {message: "perfect"}}}}}}} id="1"/>);
+
+      expect(subject.find(MyComponent).prop('details')).toEqual({message: 'perfect'});
+    });
+
+    it('should pass errors details as details props if request has failed', () => {
+      let MyComponent = (props) => (<div></div>);
+      let RequestStateComponent = RequestStateConnecter(props => `user.${props.id}.auth.login`)(MyComponent);
+      let subject = mount(<RequestStateComponent requests={{user: {'1': {auth: {login: {state: 'ERROR', error: {code: 401}}}}}}} id="1"/>);
+
+      expect(subject.find(MyComponent).prop('details')).toEqual({code: 401});
     });
   });
 

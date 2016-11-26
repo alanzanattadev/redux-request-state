@@ -135,13 +135,13 @@ params:
 import {RenderedStateConnecter} from 'redux-request-state';
 
 let DataList = RenderedStateConnecter(
-  (requestState, props) => {
+  (requestState, props, details) => {
     if (requestState == "PENDING")
       return <Spinner/>
     else if (requestState == "SUCCESS")
       return <List items={props.items}/>
     else if (requestState == "ERROR")
-      return <ErrorMessage/>
+      return <ErrorMessage message={details.message}/>
     else if (requestState == "CACHE")
       return <List/>
     else if (requestState == "DEFAULT")
@@ -159,9 +159,9 @@ let DataList = RenderedStateConnecter(
 RenderedStateConnecter is a factory which helps you to display differents components depending on state and configuration. It's a presenter, it's not connected to anything and use its props state to define the requestState.
 
 params:
-- Function that return a react element depending on request state and component props
+- Function that return a react element depending on request state, component props, and request details (data on success and error details on error)
 ```javascript
-mapStateToComponent(requestState: string, props: any) => React.Element
+mapStateToComponent(requestState: string, props: any, details: any) => React.Element
 ```
 - Function that tells to the component whether to use the one of requestState "CACHE" or not
 ```javascript
