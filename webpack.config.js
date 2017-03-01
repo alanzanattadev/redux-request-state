@@ -29,6 +29,6 @@ module.exports = {
           commonjs: 'react-dom',
           amd: 'react-dom'
       }
-  }
+  },
   devtool: 'source-map',
 }

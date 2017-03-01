@@ -5055,7 +5055,7 @@ module.exports =
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = react;
+module.exports = undefined;
 
 /***/ }),
 /* 2 */
