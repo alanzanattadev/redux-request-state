@@ -1,5 +1,14 @@
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(typeof exports === 'object' && typeof module === 'object')
+		module.exports = factory(require("react"));
+	else if(typeof define === 'function' && define.amd)
+		define(["react"], factory);
+	else if(typeof exports === 'object')
+		exports["ReduxRequestState"] = factory(require("react"));
+	else
+		root["ReduxRequestState"] = factory(root["React"]);
+})(this, function(__WEBPACK_EXTERNAL_MODULE_1__) {
+return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -5055,7 +5064,7 @@ module.exports =
 /* 1 */
 /***/ (function(module, exports) {
 
-module.exports = undefined;
+module.exports = __WEBPACK_EXTERNAL_MODULE_1__;
 
 /***/ }),
 /* 2 */
@@ -5390,4 +5399,5 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /***/ })
 /******/ ]);
+});
 //# sourceMappingURL=bundle.js.map

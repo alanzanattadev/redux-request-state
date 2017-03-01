@@ -5,7 +5,8 @@ module.exports = {
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'commonjs-module',
+    library: 'ReduxRequestState',
+    libraryTarget: 'umd',
   },
   module: {
     rules: [{
