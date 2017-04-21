@@ -50,7 +50,7 @@ store.getState().reducer.user.profile.getphoto.state == "PENDING"
 
 ### Connect
 
-#### Wire tasks to the launch track
+#### Wire tasks to the launch track (task manager)
 
 Define some Routes. Routes are the basic building block, it acts like an action factory that define how the task you'll launch will be executed and what is its id.
 
