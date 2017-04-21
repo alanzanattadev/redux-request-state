@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Route should create action correctly 1`] = `
+Object {
+  "replayWith": [Function],
+  "requestID": "user.1.photo.myphoto",
+  "resolve": [Function],
+  "type": "MY_REQUEST",
+}
+`;
+
+exports[`Route should create action correctly 2`] = `
+Object {
+  "id": "1",
+  "photoID": "myphoto",
+}
+`;
