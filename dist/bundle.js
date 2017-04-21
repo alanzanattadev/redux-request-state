@@ -7956,7 +7956,9 @@ var Route = function () {
         resolve: function resolve() {
           return _this.resolve.apply(_this, params);
         },
-        replayWith: this.replayWith,
+        replayWith: function replayWith(resolved) {
+          return _this.replayWith.apply(_this, [resolved].concat(params));
+        },
         requestID: this.requestIDFactory.apply(this, params)
       };
     }
@@ -7967,14 +7969,11 @@ var Route = function () {
         params[_key2 - 1] = arguments[_key2];
       }
 
-      return {
-        type: this.type,
+      return Object.assign({}, this.create.apply(this, params), {
         resolve: function resolve() {
           return resolver;
-        },
-        replayWith: this.replayWith,
-        requestID: this.requestIDFactory.apply(this, params)
-      };
+        }
+      });
     }
   }]);
 
