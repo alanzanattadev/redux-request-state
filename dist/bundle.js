@@ -5415,9 +5415,9 @@ var Route = function () {
         resolve: function resolve() {
           return _this.resolve.apply(_this, params);
         },
-        replayWith: function replayWith(resolved) {
+        replayWith: this.replayWith ? function (resolved) {
           return _this.replayWith.apply(_this, [resolved].concat(params));
-        },
+        } : null,
         requestID: this.requestIDFactory.apply(this, params)
       };
     }
