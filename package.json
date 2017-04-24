@@ -1,6 +1,6 @@
 {
   "name": "redux-request-state",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Redux Plugin for managing request states",
   "main": "dist/bundle.js",
   "scripts": {
