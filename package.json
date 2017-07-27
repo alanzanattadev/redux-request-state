@@ -1,17 +1,13 @@
 {
   "name": "redux-request-state",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Redux Plugin for managing request states",
   "main": "dist/bundle.js",
   "scripts": {
     "test": "jest",
     "build": "webpack"
   },
-  "keywords": [
-    "redux",
-    "request",
-    "state"
-  ],
+  "keywords": ["redux", "request", "state"],
   "author": "alanzanattadev",
   "license": "ISC",
   "devDependencies": {
